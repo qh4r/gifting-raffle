@@ -1,0 +1,40 @@
+{
+  "loading": "Wczytywanie...",
+  "header": {
+    "logout": "Wyloguj",
+    "login": "Zaloguj",
+    "signUp": "Zarejestruj",
+    "name": "Losowacz Prezentów"
+  },
+  "login": {
+    "email": "E-mail",
+    "password": "Hasło",
+    "new": "Jesteś tu nowy?",
+    "register": "Zarejestruj się!",
+    "login": "Zaloguj"
+  },
+  "register": {
+    "email": "E-mail",
+    "name": "Nazwa",
+    "password": "Hasło",
+    "repeat": "Powtórz hasło",
+    "old": "To nie pierwsza wizyta?",
+    "login": "Zaloguj się!",
+    "confirm": "Zarejestruj"
+  },
+  "validation": {
+    "email": "Podany email ma niepoprawny format",
+    "required": "Pole jest wymagane"
+  },
+  "error": {
+    "unknown": "Nieznany błąd ;(",
+    "user": {
+      "wrongNameOrPassword": "Błędny email lub hasło :(",
+      "emailAlreadyInUse": "Email już wykorzystany"
+    },
+    "password": {
+      "notMatching": "Hasła do siebie nie pasują",
+      "tooShort": "Hasło musi posiadać 8 znaków"
+    }
+  }
+}
