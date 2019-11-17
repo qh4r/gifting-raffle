@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Generated, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PairModel } from "./pair.model";
 import { UserModel } from "../../users/models/user.model";
 
@@ -25,10 +25,11 @@ export class RaffleModel {
   id: string;
 
   @Column({ length: 50 })
-  @Index({ unique: true })
   name: string;
 
-  @Column({ length: 50 })
+  @Column()
+  @Generated("uuid")
+  @Index({ unique: true })
   joinKey: string;
 
   @Column({ default: false })

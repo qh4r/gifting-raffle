@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Segment, Image, Button, Modal, Icon, Header } from "semantic-ui-react";
-import { DetailsContainer, Title, Paragraph, Attention } from "./Details.styles";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { DetailsContainer, Title, Paragraph, Attention, Code } from "./Details.styles";
+import { Redirect, useHistory } from "react-router-dom";
 import gift from "assets/images/red_gift.svg";
 import openGift from "assets/images/gift_open.svg";
 import { DetailsProps } from "./Details.types";
@@ -60,7 +60,7 @@ export const Details: React.FC<DetailsProps> = ({ raffle, error, loading, close 
               <>
                 <Paragraph>
                   {formatMessage({ id: "details.open" })}
-                  <Attention>{raffle.raffleKey}</Attention>
+                  <Code>{raffle.raffleKey}</Code>
                 </Paragraph>
                 {
                   raffle.isOwner ? (

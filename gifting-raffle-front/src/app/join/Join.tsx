@@ -40,18 +40,6 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
             <UiForm onSubmit={handleSubmit} size='large'>
               <Segment raised piled>
-                <Field name="name" validate={requireValidator}>
-                  {({ input, meta }) => (
-                    <UiForm.Input
-                      fluid
-                      error={meta.dirty && meta.error && formatMessage({ id: meta.error.id })}
-                      input={input}
-                      icon='tree'
-                      iconPosition='left'
-                      placeholder={formatMessage({ id: "join.name" })}
-                    />
-                  )}
-                </Field>
                 <Field name="raffleKey" validate={requireValidator}>
                   {({ input, meta }) => (
                     <UiForm.Input

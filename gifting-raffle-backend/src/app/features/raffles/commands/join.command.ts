@@ -4,7 +4,6 @@ import { UserModel } from "../../users/models/user.model";
 export const JOIN_COMMAND_TYPE = 'raffles/JOIN';
 
 export interface JoinCommandPayload {
-  name: string,
   raffleKey: string,
   user: UserModel,
 }

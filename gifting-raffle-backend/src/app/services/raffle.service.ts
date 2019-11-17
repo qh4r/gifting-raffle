@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { RaffleModel } from "../features/raffles/models/raffle.model";
 import { PairModel } from "../features/raffles/models/pair.model";
 import { HttpError } from "../../errors/http.error";
-import { BAD_REQUEST, FORBIDDEN, NOT_FOUND } from "http-status-codes";
+import { BAD_REQUEST, FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND } from "http-status-codes";
 import { UserModel } from "../features/users/models/user.model";
 import v4 = require("uuid/v4");
 
@@ -24,7 +24,6 @@ export interface MatchResult {
 }
 
 export interface JoinRaffleProps {
-  name: string,
   raffleKey: string,
   user: UserModel,
 }
@@ -94,17 +93,17 @@ export class RaffleService {
       const { id } = await this.rafflesRepository.save(raffle);
       return id;
     } catch (e) {
-      throw new HttpError("error.raffle.nameTaken", BAD_REQUEST);
+      throw new HttpError("error.unknown", INTERNAL_SERVER_ERROR);
     }
   }
 
-  async joinRaffle({ user, raffleKey, name }: JoinRaffleProps): Promise<string> {
+  async joinRaffle({ user, raffleKey }: JoinRaffleProps): Promise<string> {
     const existingPair = await this.pairsRepository
                              .createQueryBuilder("pair")
                              .leftJoinAndSelect("pair.raffle", "raffle")
-                             .where("pair.giverId=:userId AND raffle.name=:name", {
+                             .where("pair.giverId=:userId AND raffle.joinKey=:joinKey", {
                                userId: user.id,
-                               name,
+                               joinKey: raffleKey,
                              })
                              .getCount();
 
@@ -114,12 +113,12 @@ export class RaffleService {
 
     const raffle = await this.rafflesRepository
                                    .createQueryBuilder("raffle")
-                                   .where("raffle.name=:name", {
-                                     name,
+                                   .where("raffle.joinKey=:joinKey", {
+                                     joinKey: raffleKey,
                                    })
                                    .getOne();
 
-    if(!raffle || (raffle.joinKey !== raffleKey)) {
+    if(!raffle) {
       throw new HttpError("error.raffle.notFound", NOT_FOUND);
     }
 
@@ -222,6 +221,6 @@ export class RaffleService {
   }
 
   private generateKey(): string {
-    return Buffer.from(v4()).toString("base64").slice(-10);
+    return v4();
   }
 }

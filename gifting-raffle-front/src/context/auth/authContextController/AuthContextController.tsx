@@ -21,7 +21,6 @@ export const AuthContextController: React.FC<AuthContextControllerProps> = ({ ch
       cookies.set('accessToken', state.accessToken);
 
       const decodedToken = decode<Token>(state.accessToken);
-console.log(decodedToken);
       return dispatch({
         type: SET_AUTHORIZED,
         decodedToken,

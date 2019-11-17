@@ -11,7 +11,6 @@ export interface JoinActionProps {
 export const joinActionValidation = celebrate(
   {
     body: Joi.object().keys({
-      name: Joi.string().required(),
       raffleKey: Joi.string().required(),
     }),
   },
@@ -23,7 +22,6 @@ export const joinAction = ({commandBus}: JoinActionProps) => (req: Request, res:
     .execute(new JoinCommand({
       user: res.locals.user,
       raffleKey: req.body.raffleKey,
-      name: req.body.name,
     }))
     .then(commandResult => {
       res.status(ACCEPTED).json({

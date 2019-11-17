@@ -16,7 +16,6 @@ export type RaffleDetails = {
 }
 
 export type JoinRaffleBody = {
-  name: string,
   raffleKey: string,
 }
 

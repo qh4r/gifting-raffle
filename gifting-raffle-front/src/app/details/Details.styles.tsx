@@ -14,6 +14,12 @@ export const Attention = styled('span')`
   }
 `
 
+export const Code = styled('p')`
+  color: ${props => props.theme.variables.colors.action};
+  font-size: 1.1em;
+  padding: 0.5em 0 0.25em;
+`
+
 export const Paragraph = styled('p')`
   font-size: 1.5rem;
   margin: 0 4rem 1.5rem;
