@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PairModel } from "./pair.model";
 import { UserModel } from "../../users/models/user.model";
 
@@ -25,6 +25,7 @@ export class RaffleModel {
   id: string;
 
   @Column({ length: 50 })
+  @Index({ unique: true })
   name: string;
 
   @Column({ length: 50 })
@@ -33,7 +34,7 @@ export class RaffleModel {
   @Column({ default: false })
   finished: boolean;
 
-  @OneToMany(() => PairModel, pair => pair.raffle)
+  @OneToMany(() => PairModel, pair => pair.raffle, { cascade: true })
   pairs: PairModel[];
 
   @ManyToOne(() => UserModel, user => user.ownedRaffles)

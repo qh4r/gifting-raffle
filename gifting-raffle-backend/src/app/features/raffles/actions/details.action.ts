@@ -1,40 +1,25 @@
-import {Request, Response, NextFunction} from 'express';
+import { Request, Response, NextFunction } from "express";
 import { celebrate, Joi } from "celebrate";
-import { CommandBus } from "../../../../shared/command-bus";
-import { DetailsCommand } from "../commands/details.command";
+import { RaffleService } from "../../../services/raffle.service";
 
 export interface DetailsActionProps {
-  commandBus: CommandBus
+  raffleService: RaffleService
 }
 
 export const detailsActionValidation = celebrate(
   {
-    headers: Joi.object()
+    params: Joi.object().keys({
+      raffleId: Joi.string().required(),
+    }),
   },
-  { abortEarly: false }
+  { abortEarly: false },
 );
 
-/**
- * @swagger
- *
- * /api/raffles/details:
- *   get:
- *     description: desc
- *     responses:
- *       201:
- *         description: desc
- *       400:
- *         description: Validation Error
- *       500:
- *         description: Internal Server Error
- */
-export const detailsAction = ({commandBus}: DetailsActionProps) => (req: Request, res: Response, next: NextFunction) => {
-  commandBus
-    .execute(new DetailsCommand({
-      // command props
-    }))
-    .then(commandResult => {
-      // response
-    })
-    .catch(next);
+export const detailsAction = ({ raffleService }: DetailsActionProps) => (req: Request, res: Response,
+  next: NextFunction) => {
+  raffleService.getRafflesDetails(req.params.raffleId, res.locals.user.id)
+               .then(commandResult => {
+                 res.json(commandResult);
+               })
+               .catch(next);
 };

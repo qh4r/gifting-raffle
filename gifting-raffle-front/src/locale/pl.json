@@ -35,6 +35,40 @@
     "password": {
       "notMatching": "Hasła do siebie nie pasują",
       "tooShort": "Hasło musi posiadać 8 znaków"
+    },
+    "raffle": {
+      "nameTaken": "Ktoś swtorzył już zbiórkę o takiej nazwie",
+      "alreadyJoinedTo": "Już dołączyłeś do tego losowania",
+      "notFound": "Nie znaleziono losowania",
+      "alreadyFinished": "To losowanie już się zakończyło"
     }
+  },
+  "list": {
+    "header": "Twoje losowania:",
+    "empty": "Lista jest Pusta",
+    "join": "Dołącz",
+    "create": "Stwórz"
+  },
+  "merryChristmas": "Wesołych Świąt!",
+  "details": {
+    "participants": "Aktualna Liczba uczestników: ",
+    "open": "Zapisy wciąż trwają, by zaprosić znajomego podaj mu nazwę losowania oraz następujący kod: ",
+    "yourPick": "Wylosowałeś: ",
+    "finish": "Zakończ i losuj",
+    "modal": {
+      "yes": "Tak",
+      "no": "Nie",
+      "title": "Zaraz przeprowadzisz losowanie",
+      "message": "Będzie to nieodwracalne, a zapraszanie do niego kolejych uczestników stanie się niemożliwe. Czy chcesz kontynuować?"
+    }
+  },
+  "create": {
+    "name": "Nazwa losowania",
+    "submit": "Utwórz Losowanie"
+  },
+  "join": {
+    "name": "Nazwa",
+    "key": "Klucz",
+    "submit": "Dołącz"
   }
 }

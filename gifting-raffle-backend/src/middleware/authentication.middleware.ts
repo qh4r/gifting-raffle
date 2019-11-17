@@ -34,6 +34,7 @@ export const authenticationMiddlewareFactory = ({
           userId: tokenUser.id,
         })
         .getOne();
+
       if (!user) {
         return next(new HttpError("error.user.not.found", INTERNAL_SERVER_ERROR));
       }

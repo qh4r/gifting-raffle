@@ -2,6 +2,7 @@ import {Request, Response, NextFunction} from 'express';
 import { celebrate, Joi } from "celebrate";
 import { CommandBus } from "../../../../shared/command-bus";
 import { CreateCommand } from "../commands/create.command";
+import { CREATED } from "http-status-codes";
 
 export interface CreateActionProps {
   commandBus: CommandBus
@@ -9,32 +10,23 @@ export interface CreateActionProps {
 
 export const createActionValidation = celebrate(
   {
-    headers: Joi.object()
+    body: Joi.object().keys({
+      name: Joi.string().required(),
+    }),
   },
   { abortEarly: false }
 );
 
-/**
- * @swagger
- *
- * /api/raffles/create:
- *   post:
- *     description: desc
- *     responses:
- *       201:
- *         description: desc
- *       400:
- *         description: Validation Error
- *       500:
- *         description: Internal Server Error
- */
 export const createAction = ({commandBus}: CreateActionProps) => (req: Request, res: Response, next: NextFunction) => {
   commandBus
     .execute(new CreateCommand({
-      // command props
+      user: res.locals.user,
+      name: req.body.name,
     }))
     .then(commandResult => {
-      // response
+      return res.status(CREATED).json({
+        ruffleId: commandResult,
+      })
     })
     .catch(next);
 };

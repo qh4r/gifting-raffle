@@ -3,6 +3,7 @@ export const variables = {
     primary: "white",
     snowBackground: "#7bc8ff",
     danger: '#E73633',
+    action: '#f2293c',
   },
   input: {
     borderRadius: '6px',

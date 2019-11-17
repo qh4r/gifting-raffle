@@ -18,6 +18,7 @@ import { rafflesRouting } from "./app/features/raffles/routing";
 import { AuthenticationService } from "./app/services/authentication.service";
 import { createConnection } from "typeorm";
 import { authenticationMiddlewareFactory } from "./middleware/authentication.middleware";
+import { RaffleService } from "./app/services/raffle.service";
 // ROUTING_IMPORTS
 
 dotenvConfig({
@@ -56,6 +57,7 @@ export async function createContainer(): Promise<AwilixContainer> {
 
   container.register({
     authenticationService: awilix.asClass(AuthenticationService),
+    raffleService: awilix.asClass(RaffleService),
   });
 
   container.register({

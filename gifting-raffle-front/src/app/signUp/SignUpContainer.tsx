@@ -1,11 +1,11 @@
 import React from 'react';
 import { useMutation } from 'react-fetching-library';
 
-import { createSignUpAction } from 'api/actions/auth/authActions';
+import { signUpAction } from 'api/actions/auth/authActions';
 import { SignUp } from './SignUp';
 
 export const SignUpContainer: React.FC = () => {
-  const { mutate } = useMutation(createSignUpAction);
+  const { mutate } = useMutation(signUpAction);
 
   return <SignUp onSubmit={mutate} />;
 };

@@ -8,6 +8,7 @@ import { AuthorizedRoute } from "../shared/components/authorizedRoute/Authorized
 import { LogoutContainer } from "./logout/LogoutContainer";
 import { LoginContainer } from "./login/LoginContainer";
 import { SignUpContainer } from "./signUp/SignUpContainer";
+import { Authorized } from "./authorized/Authorized";
 
 const App: React.FC = () => {
   return (
@@ -19,9 +20,9 @@ const App: React.FC = () => {
             <Route path="/logout" exact component={LogoutContainer} />
             <Route path="/login" exact component={LoginContainer} />
             <Route path="/sign-up" exact component={SignUpContainer} />
-            <AuthorizedRoute path="/"  />
+            <AuthorizedRoute path="/" component={Authorized} />
 
-            <Redirect to="/login" />
+            <Redirect to="/" />
           </Switch>
         </Layout>
       </Suspense>

@@ -1,40 +1,14 @@
 import {Request, Response, NextFunction} from 'express';
-import { celebrate, Joi } from "celebrate";
-import { CommandBus } from "../../../../shared/command-bus";
-import { ListCommand } from "../commands/list.command";
+import { RaffleService } from "../../../services/raffle.service";
 
 export interface ListActionProps {
-  commandBus: CommandBus
+  raffleService: RaffleService
 }
 
-export const listActionValidation = celebrate(
-  {
-    headers: Joi.object()
-  },
-  { abortEarly: false }
-);
-
-/**
- * @swagger
- *
- * /api/raffles/list:
- *   get:
- *     description: desc
- *     responses:
- *       201:
- *         description: desc
- *       400:
- *         description: Validation Error
- *       500:
- *         description: Internal Server Error
- */
-export const listAction = ({commandBus}: ListActionProps) => (req: Request, res: Response, next: NextFunction) => {
-  commandBus
-    .execute(new ListCommand({
-      // command props
-    }))
+export const listAction = ({ raffleService }: ListActionProps) => (req: Request, res: Response, next: NextFunction) => {
+  raffleService.getRafflesList(res.locals.user.id)
     .then(commandResult => {
-      // response
+      res.json(commandResult);
     })
     .catch(next);
 };

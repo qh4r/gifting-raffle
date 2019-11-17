@@ -12,14 +12,14 @@ export type SignUpBody = {
   repeatPassword: string;
 };
 
-export const createLoginAction: (body: LoginBody) => Action = body => ({
+export const loginAction: (body: LoginBody) => Action = body => ({
   skipAuth: true,
   endpoint: '/users/login',
   method: 'POST',
   body,
 });
 
-export const createSignUpAction: (body: SignUpBody) => Action = body => ({
+export const signUpAction: (body: SignUpBody) => Action = body => ({
   skipAuth: true,
   endpoint: '/users/sign-up',
   method: 'POST',

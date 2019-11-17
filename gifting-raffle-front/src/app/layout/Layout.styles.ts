@@ -23,9 +23,8 @@ export const AppWrapper = styled("div")`
     position: absolute;
     top: 0;
     z-index: -1;
-    margin-right: -10%;
     height: 100%;
-    width: 110%;
+    width: 100%;
     max-width: 100%;
     background: ${props => props.theme.variables.colors.snowBackground};
   }
@@ -85,8 +84,77 @@ export const ContentWrapper = styled("div")`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - 40px);
-  margin-top: 40px;
-  padding: 20px;
+  height: calc(100vh - 74px);
+  margin-top: 74px;
+  padding: 20px 0;
   overflow: auto;
+`;
+
+
+export const ChrimstansText = styled("p")`
+  font-size: 4rem;
+  color: ${props => props.theme.variables.colors.action};
+  position: absolute;
+  bottom: 5%;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  z-index: -1;
+  animation: text-flicker 10s linear infinite;
+  
+  @keyframes text-flicker {
+  0% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  
+  2% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  8% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  9% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  12% {
+    opacity:0.1;
+    text-shadow: 0px 0px ${props => props.theme.variables.colors.action};
+  }
+  20% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  25% {
+    opacity:0.3;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  30% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  70% {
+    opacity:0.7;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  72% {
+    opacity:0.2;
+    text-shadow:0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  77% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  100% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+}
 `;

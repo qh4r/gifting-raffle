@@ -4,9 +4,9 @@ import { UserModel } from "../../users/models/user.model";
 
 interface PairModelProps {
   order: string;
-  raffle: string;
-  giver: string;
-  receiver: string;
+  raffle: RaffleModel;
+  giver: UserModel;
+  receiver: UserModel;
 }
 
 @Entity({
@@ -35,7 +35,11 @@ export class PairModel {
   raffleId: string;
 
   @ManyToOne(() => UserModel, user => user.giverPairs)
+  @JoinColumn({name: "giverId"})
   giver: UserModel;
+
+  @Column({ name: "giverId" })
+  giverId: string;
 
   @ManyToOne(() => UserModel, user => user.receiverPairs, {nullable: true})
   receiver?: UserModel;

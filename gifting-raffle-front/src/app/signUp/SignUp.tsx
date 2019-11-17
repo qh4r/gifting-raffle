@@ -4,11 +4,12 @@ import { SignUpProps } from "./SignUp.types";
 import { Link, Redirect } from "react-router-dom";
 import { Field, Form } from 'react-final-form';
 
-import { StyledGrid, ErrorText } from "./SignUp.styles";
+import { ErrorText } from "./SignUp.styles";
 import { useAuthDispatch, useAuthState, useLocale } from "../../shared/hooks";
 import { emailValidator, requireValidator } from "../../shared/validators";
 import { SignUpBody } from "../../api/actions/auth/authActions";
 import { SET_TOKENS, START_AUTHORIZING } from "../../context/auth/authReducer/authReducer";
+import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
 
 export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
   const { formatMessage } = useLocale();
@@ -63,7 +64,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
         <StyledGrid textAlign='center' verticalAlign='middle'>
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
             <UiForm onSubmit={handleSubmit} size='large'>
-              <Segment stacked>
+              <Segment raised piled>
                 <Field name="email" validate={emailValidator}>
                   {({ input, meta }) => (
                     <UiForm.Input
