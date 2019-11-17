@@ -20,7 +20,7 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
     const { payload, error } = await onSubmit(body);
 
     if (!error && payload) {
-      history.push("/");
+      history.push(`/raffle/${payload.raffleId}`);
     }
 
     if (payload && payload.error) {

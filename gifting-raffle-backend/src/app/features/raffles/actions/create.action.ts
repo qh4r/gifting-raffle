@@ -25,7 +25,7 @@ export const createAction = ({commandBus}: CreateActionProps) => (req: Request, 
     }))
     .then(commandResult => {
       return res.status(CREATED).json({
-        ruffleId: commandResult,
+        raffleId: commandResult,
       })
     })
     .catch(next);

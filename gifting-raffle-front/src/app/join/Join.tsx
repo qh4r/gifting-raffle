@@ -20,7 +20,7 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
     const { payload, error } = await onSubmit(body);
 
     if (!error && payload) {
-      history.push("/");
+      history.push(`/raffle/${payload.raffleId}`);
     }
 
     if (payload && payload.error) {

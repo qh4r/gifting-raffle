@@ -35,7 +35,7 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading }
             <List animated size="massive" verticalAlign="middle">
               {rafflesList ? (
                 rafflesList.map(item => (
-                  <List.Item as={Link} to={`/raffle/${item.id}`}>
+                  <List.Item key={item.id} as={Link} to={`/raffle/${item.id}`}>
                     {item.finished ? (
                       <Image size="mini"  src={openGift}/>
                     ) : (
