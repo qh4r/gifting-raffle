@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/index.js",
+    "copy": "mkdir -p ../build && cp -aR ./build/ ../build/ && cp ./.env.dist ../build/.env.dist",
+    "release": "npm run build && npm run copy",
     "build": "tsc --skipLibCheck",
     "watch": "docker-compose up builder",
     "docker-build": "./docker/build.sh",
@@ -24,6 +27,10 @@
     "create-migration": "docker-compose run --rm js ./node_modules/.bin/typeorm migration:create -f ./build/config/db.static -n",
     "plop": "plop"
   },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
   "keywords": [],
   "author": "",
   "dependencies": {
@@ -36,6 +43,7 @@
     "helmet": "^3.21.2",
     "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^4.7.0",
     "pg": "^7.12.1",
     "supertest": "^4.0.2",
     "swagger-jsdoc": "^3.4.0",
@@ -55,6 +63,7 @@
     "@types/jsonwebtoken": "^8.3.5",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.7",
+    "@types/nodemailer": "^4.6.8",
     "@types/supertest": "^2.0.8",
     "@types/swagger-jsdoc": "^3.0.2",
     "@types/swagger-ui-express": "^4.1.0",

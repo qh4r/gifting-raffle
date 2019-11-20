@@ -1,6 +1,6 @@
 export const variables = {
   colors: {
-    primary: "white",
+    primary: "black",
     snowBackground: "#7bc8ff",
     danger: '#E73633',
     action: '#f2293c',

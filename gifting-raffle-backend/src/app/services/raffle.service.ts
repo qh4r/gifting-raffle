@@ -5,10 +5,12 @@ import { HttpError } from "../../errors/http.error";
 import { BAD_REQUEST, FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND } from "http-status-codes";
 import { UserModel } from "../features/users/models/user.model";
 import v4 = require("uuid/v4");
+import { MailingService } from "./mailing.service";
 
 export interface RaffleServiceProps {
   rafflesRepository: Repository<RaffleModel>;
   pairsRepository: Repository<PairModel>;
+  mailingService: MailingService
 }
 
 export interface RafflesListData {
@@ -51,9 +53,12 @@ export class RaffleService {
 
   private readonly pairsRepository: Repository<PairModel>;
 
-  constructor({ rafflesRepository, pairsRepository }: RaffleServiceProps) {
+  private readonly mailingService: MailingService;
+
+  constructor({ rafflesRepository, pairsRepository, mailingService }: RaffleServiceProps) {
     this.rafflesRepository = rafflesRepository;
     this.pairsRepository = pairsRepository;
+    this.mailingService = mailingService;
   }
 
   async getRafflesList(userId: string): Promise<RafflesListData[]> {
@@ -99,30 +104,30 @@ export class RaffleService {
 
   async joinRaffle({ user, raffleKey }: JoinRaffleProps): Promise<string> {
     const existingPair = await this.pairsRepository
-                             .createQueryBuilder("pair")
-                             .leftJoinAndSelect("pair.raffle", "raffle")
-                             .where("pair.giverId=:userId AND raffle.joinKey=:joinKey", {
-                               userId: user.id,
-                               joinKey: raffleKey,
-                             })
-                             .getCount();
+                                   .createQueryBuilder("pair")
+                                   .leftJoinAndSelect("pair.raffle", "raffle")
+                                   .where("pair.giverId=:userId AND raffle.joinKey=:joinKey", {
+                                     userId: user.id,
+                                     joinKey: raffleKey,
+                                   })
+                                   .getCount();
 
-    if(existingPair) {
+    if (existingPair) {
       throw new HttpError("error.raffle.alreadyJoinedTo", FORBIDDEN);
     }
 
     const raffle = await this.rafflesRepository
-                                   .createQueryBuilder("raffle")
-                                   .where("raffle.joinKey=:joinKey", {
-                                     joinKey: raffleKey,
-                                   })
-                                   .getOne();
+                             .createQueryBuilder("raffle")
+                             .where("raffle.joinKey=:joinKey", {
+                               joinKey: raffleKey,
+                             })
+                             .getOne();
 
-    if(!raffle) {
+    if (!raffle) {
       throw new HttpError("error.raffle.notFound", NOT_FOUND);
     }
 
-    if(raffle.finished) {
+    if (raffle.finished) {
       throw new HttpError("error.raffle.alreadyFinished", BAD_REQUEST);
     }
 
@@ -143,25 +148,25 @@ export class RaffleService {
                              .leftJoinAndSelect("pairs.giver", "giver")
                              .where("raffle.id=:raffleId AND raffle.ownerId=:userId", {
                                raffleId,
-                               userId: user.id
+                               userId: user.id,
                              })
                              .getOne();
 
-    if(!raffle) {
+    if (!raffle) {
       throw new HttpError("error.raffle.ownedNotFound", NOT_FOUND);
     }
 
-    if(raffle.finished) {
+    if (raffle.finished) {
       throw new HttpError("error.raffle.alreadyFinished", BAD_REQUEST);
     }
 
-    if(raffle.pairs.length < 2) {
+    if (raffle.pairs.length < 2) {
       throw new HttpError("error.raffle.canNotClose", BAD_REQUEST);
     }
 
     const pairs = raffle.pairs;
     const allGivers = raffle.pairs.map(pair => pair.giver);
-    const {matchedPairs} = pairs.reduce((result: MatchResult, pair: PairModel): MatchResult => {
+    const { matchedPairs } = pairs.reduce((result: MatchResult, pair: PairModel): MatchResult => {
       const receivers = result.leftReceivers.filter(receiver => receiver.id !== pair.giver.id);
 
       const giverFilteredOut = receivers.length !== result.leftReceivers.length;
@@ -172,9 +177,9 @@ export class RaffleService {
       pair.receiver = pick;
 
       return {
-        leftReceivers: giverFilteredOut ? [...rest, pair.giver] : rest,
-        matchedPairs: [...result.matchedPairs, pair],
-      }
+        leftReceivers: giverFilteredOut ? [ ...rest, pair.giver ] : rest,
+        matchedPairs: [ ...result.matchedPairs, pair ],
+      };
     }, {
       leftReceivers: allGivers,
       matchedPairs: [],
@@ -183,7 +188,12 @@ export class RaffleService {
     raffle.pairs = matchedPairs;
     raffle.finished = true;
 
-    return this.rafflesRepository.save(raffle);
+    this.rafflesRepository.save(raffle);
+
+    await Promise.all(allGivers.map(value => {
+      return this.mailingService.sendMail(value.email, "Losowanie zakończone",
+        `Losowanie "${raffle.name}" zostało zakończone, zajrzyj do aplikacji i dowiedz się kogo wylosowałeś`);
+    }));
   }
 
   async getRafflesDetails(raffleId: string, userId: string): Promise<RaffleDetailsData> {
@@ -212,12 +222,12 @@ export class RaffleService {
       finished: details.raffle.finished,
       pairsCount: details.raffle.pairs.length,
       raffleKey: isOwner ? details.raffle.joinKey : undefined,
-      yourMatch: details.raffle.finished ? details.receiver!.name : undefined
+      yourMatch: details.raffle.finished ? details.receiver!.name : undefined,
     };
   }
 
   private pickRandomFromArray<T>(input: T[]): T {
-    return input[Math.abs(Math.ceil(Math.random() * input.length - 1))];
+    return input[ Math.abs(Math.ceil(Math.random() * input.length - 1)) ];
   }
 
   private generateKey(): string {

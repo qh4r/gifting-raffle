@@ -19,6 +19,8 @@ import { AuthenticationService } from "./app/services/authentication.service";
 import { createConnection } from "typeorm";
 import { authenticationMiddlewareFactory } from "./middleware/authentication.middleware";
 import { RaffleService } from "./app/services/raffle.service";
+import { MailingService } from "./app/services/mailing.service";
+import { loggers } from "winston";
 // ROUTING_IMPORTS
 
 dotenvConfig({
@@ -39,6 +41,8 @@ export async function createContainer(): Promise<AwilixContainer> {
   container.register({
     port: awilix.asValue(config.port),
     accessTokenKey: awilix.asValue(config.accessTokenKey),
+    gmailAddress: awilix.asValue(config.gmailAddress),
+    gmailPassword: awilix.asValue(config.gmailPassword),
     logger: awilix.asValue(winstonLogger),
   });
 
@@ -58,6 +62,7 @@ export async function createContainer(): Promise<AwilixContainer> {
   container.register({
     authenticationService: awilix.asClass(AuthenticationService),
     raffleService: awilix.asClass(RaffleService),
+    mailingService: awilix.asClass(MailingService),
   });
 
   container.register({
