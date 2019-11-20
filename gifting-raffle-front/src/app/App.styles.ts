@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
+    padding: env(safe-area-inset);
     box-sizing: border-box;
     scroll-behavior: smooth;
   }

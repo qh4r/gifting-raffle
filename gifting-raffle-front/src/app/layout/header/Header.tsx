@@ -1,9 +1,9 @@
-import { Container, Image, Menu } from "semantic-ui-react";
+import { Container, Dropdown, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import redBox from "../../../assets/images/red_gift.svg";
 import React from "react";
 import { useAuthState, useLocale } from "../../../shared/hooks";
-import { StyledMenu } from "./Header.styles";
+import { StyledMenu, Title } from "./Header.styles";
 
 export const Header = () => {
   const { formatMessage } = useLocale();
@@ -14,20 +14,21 @@ export const Header = () => {
       <Container>
         <Menu.Item to={"/"} as={Link} header>
           <Image size='mini' src={redBox} style={{ marginRight: '1.5em' }}/>
-          {formatMessage({ id: "header.name" })}
+          <Title>{formatMessage({ id: "header.name" })}</Title>
         </Menu.Item>
         <Menu.Menu position='right'>
           {isAuthorized ? (
               <>
-                <Menu.Item>
-                  {name}
-                </Menu.Item>
-                <Menu.Item
-                  as={Link}
-                  to="/logout"
-                >
-                  {formatMessage({ id: "header.logout" })}
-                </Menu.Item>
+                <Dropdown item  text={name}>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/logout"
+                    >
+                      {formatMessage({ id: "header.logout" })}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </>
             )
             : (

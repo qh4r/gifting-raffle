@@ -11,7 +11,14 @@ export const StyledListHeader = styled(List.Header)`
 export const ListTitle = styled("h2")`
   margin-bottom: 20px;
   text-align: center;
-  font-family: 'Mountains of Christmas', cursive;
+  font-size: 2rem;
+  font-weight: 300;
+  font-family: 'Mountains of Christmas', cursive !important;
+`
+
+export const Empty = styled("div")`
+  margin: 20px 0;
+  text-align: center !important;
 `
 
 export const DashboardContainer = styled(Container)`
@@ -24,6 +31,7 @@ export const DashboardContainer = styled(Container)`
   }
   
   &.dashboard-container.dashboard-container { 
+    font-family: 'Mountains of Christmas', cursive !important;
     @media only screen and (max-width: 768px) {   
       width: 90% !important;
     }

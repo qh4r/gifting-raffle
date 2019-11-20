@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Segment, Button, List, Image } from "semantic-ui-react";
-import { DashboardContainer, ListTitle, StyledColumn, StyledListHeader } from "./Dashboard.styles";
+import { DashboardContainer, Empty, ListTitle, StyledColumn, StyledListHeader } from "./Dashboard.styles";
 import { Link } from "react-router-dom";
 import { DashboardPropsType } from "./Dashboard.types";
 import gift from "assets/images/red_gift.svg";
@@ -33,7 +33,7 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading }
           <Segment padded raised piled>
             <ListTitle>{formatMessage({ id: "list.header" })}</ListTitle>
             <List animated size="massive" verticalAlign="middle">
-              {rafflesList ? (
+              {rafflesList && rafflesList.length ? (
                 rafflesList.map(item => (
                   <List.Item key={item.id} as={Link} to={`/raffle/${item.id}`}>
                     {item.finished ? (
@@ -48,7 +48,7 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading }
                   </List.Item>
                 ))
               ) : (
-                formatMessage({ id: "list.empty" })
+                <Empty>{formatMessage({ id: "list.empty" })}</Empty>
               )}
             </List>
           </Segment>

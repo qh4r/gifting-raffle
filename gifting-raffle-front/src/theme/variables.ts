@@ -2,6 +2,7 @@ export const variables = {
   colors: {
     primary: "black",
     snowBackground: "#7bc8ff",
+    headerBackground: "dodgerblue",
     danger: '#E73633',
     action: '#f2293c',
   },

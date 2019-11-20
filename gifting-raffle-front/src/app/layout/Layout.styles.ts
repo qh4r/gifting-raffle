@@ -26,6 +26,7 @@ export const AppWrapper = styled("div")`
     height: 100%;
     width: 100%;
     max-width: 100%;
+    min-height: 100vh;
     background: ${props => props.theme.variables.colors.snowBackground};
   }
   
