@@ -96,7 +96,7 @@ export const ChrimstansText = styled("p")`
   font-size: 4rem;
   color: ${props => props.theme.variables.colors.action};
   position: absolute;
-  bottom: 5%;
+  bottom: 0;
   align-items: center;
   flex-direction: column;
   width: 100%;

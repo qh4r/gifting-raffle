@@ -6,6 +6,6 @@ export const StyledGrid = styled(Grid)`
   width: 100%; 
   
   button, input {
-    font-family: 'Mountains of Christmas', cursive !important;
+    font-family: ${props => props.theme.variables.fonts.primary} !important;
   }
 `;

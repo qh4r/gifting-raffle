@@ -9,6 +9,8 @@ import { useLocale } from "../../shared/hooks";
 import { requireValidator } from "../../shared/validators";
 import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
 import { JoinRaffleBody } from "../../api/actions/raffles/rafflesActions.types";
+import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
+import dabSanta from "../../assets/images/santa_dab.png";
 
 
 export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
@@ -38,7 +40,7 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
         <StyledGrid textAlign='center' verticalAlign='middle'>
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <UiForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
               <Segment raised piled>
                 <Field name="raffleKey" validate={requireValidator}>
                   {({ input, meta }) => (
@@ -59,7 +61,8 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
                   {formatMessage({ id: "join.submit" })}
                 </Button>
               </Segment>
-            </UiForm>
+              <AbsoluteImage centered flip size="small" src={dabSanta} />
+            </AbsoluteImageContainerForm>
           </Grid.Column>
         </StyledGrid>
       )}

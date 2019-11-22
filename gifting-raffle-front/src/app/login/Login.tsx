@@ -10,6 +10,8 @@ import { emailValidator, requireValidator } from "../../shared/validators";
 import { LoginBody } from "../../api/actions/auth/authActions";
 import { SET_TOKENS, START_AUTHORIZING } from "../../context/auth/authReducer/authReducer";
 import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
+import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
+import dabSanta from "assets/images/santa_dab.png";
 
 
 export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
@@ -52,7 +54,7 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
         <StyledGrid textAlign='center' verticalAlign='middle'>
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <UiForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
               <Segment raised piled>
                 <Field name="email" validate={emailValidator}>
                   {({ input, meta }) => (
@@ -86,7 +88,8 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
                   {formatMessage({ id: "login.login" })}
                 </Button>
               </Segment>
-            </UiForm>
+              <AbsoluteImage centered size="small" src={dabSanta} />
+            </AbsoluteImageContainerForm>
             <Message>
               {formatMessage({ id: "login.new" })} <Link to='/sign-up'>{formatMessage({ id: "login.register" })}</Link>
             </Message>

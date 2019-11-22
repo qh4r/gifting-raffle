@@ -9,6 +9,8 @@ import { useLocale } from "../../shared/hooks";
 import { requireValidator } from "../../shared/validators";
 import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
 import { CreateRaffleBody } from "../../api/actions/raffles/rafflesActions.types";
+import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
+import dabSanta from "../../assets/images/santa_dab.png";
 
 
 export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
@@ -38,7 +40,7 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
         <StyledGrid textAlign='center' verticalAlign='middle'>
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <UiForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
               <Segment raised piled>
                 <Field name="name" validate={requireValidator}>
                   {({ input, meta }) => (
@@ -59,7 +61,8 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
                   {formatMessage({ id: "create.submit" })}
                 </Button>
               </Segment>
-            </UiForm>
+              <AbsoluteImage centered size="small" src={dabSanta} />
+            </AbsoluteImageContainerForm>
           </Grid.Column>
         </StyledGrid>
       )}

@@ -42,6 +42,6 @@ export const Title = styled('span')`
   overflow: hidden;
   text-overflow: ellipsis;
   @media only screen and (max-width: 768px) {
-    max-width: 40%;
+    max-width: 70%;
   }
 `

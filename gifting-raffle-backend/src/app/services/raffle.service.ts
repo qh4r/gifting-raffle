@@ -188,7 +188,7 @@ export class RaffleService {
     raffle.pairs = matchedPairs;
     raffle.finished = true;
 
-    this.rafflesRepository.save(raffle);
+    await this.rafflesRepository.save(raffle);
 
     await Promise.all(allGivers.map(value => {
       return this.mailingService.sendMail(value.email, "Losowanie zakończone",

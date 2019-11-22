@@ -28,13 +28,13 @@ export const Paragraph = styled('p')`
 `;
 
 export const StyledButton = styled(Button)`
-  font-family: 'Mountains of Christmas', cursive !important;
+  font-family: ${props => props.theme.variables.fonts.primary} !important;
  
 `;
 
 export const DetailsContainer = styled(Container)`
   .button-end {
-    font-family: 'Mountains of Christmas', cursive !important;
+    font-family: ${props => props.theme.variables.fonts.primary} !important;
     
     background-color: ${props => props.theme.variables.colors.action} !important;
   }

@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-size: 100%;
     vertical-align: baseline;
-    font-family: 'Mountains of Christmas', cursive;
+    font-family: ${props => props.theme.variables.fonts.primary};
   }
 
   body {
@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
+    font-size: 16px !important;
     padding: env(safe-area-inset);
     box-sizing: border-box;
     scroll-behavior: smooth;

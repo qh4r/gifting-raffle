@@ -1,4 +1,7 @@
 export const variables = {
+  fonts: {
+    primary: "'Bigelow Rules', cursive",
+    },
   colors: {
     primary: "black",
     snowBackground: "#7bc8ff",

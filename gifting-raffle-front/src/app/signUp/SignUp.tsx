@@ -10,6 +10,8 @@ import { emailValidator, requireValidator } from "../../shared/validators";
 import { SignUpBody } from "../../api/actions/auth/authActions";
 import { SET_TOKENS, START_AUTHORIZING } from "../../context/auth/authReducer/authReducer";
 import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
+import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
+import dabSanta from "assets/images/santa_dab.png";
 
 export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
   const { formatMessage } = useLocale();
@@ -63,7 +65,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
         <StyledGrid textAlign='center' verticalAlign='middle'>
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <UiForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
               <Segment raised piled>
                 <Field name="email" validate={emailValidator}>
                   {({ input, meta }) => (
@@ -122,7 +124,8 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
                   {formatMessage({ id: "register.confirm" })}
                 </Button>
               </Segment>
-            </UiForm>
+              <AbsoluteImage floatRight size="tiny" src={dabSanta} />
+            </AbsoluteImageContainerForm>
             <Message>
               {formatMessage({ id: "register.old" })} <Link to='/login'>{formatMessage(
               { id: "register.login" })}</Link>
