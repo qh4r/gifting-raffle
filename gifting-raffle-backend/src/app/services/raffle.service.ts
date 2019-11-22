@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { RaffleModel } from "../features/raffles/models/raffle.model";
 import { PairModel } from "../features/raffles/models/pair.model";
 import { HttpError } from "../../errors/http.error";
-import { BAD_REQUEST, FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND } from "http-status-codes";
+import { BAD_REQUEST, INTERNAL_SERVER_ERROR, NOT_FOUND } from "http-status-codes";
 import { UserModel } from "../features/users/models/user.model";
 import v4 = require("uuid/v4");
 import { MailingService } from "./mailing.service";
@@ -113,7 +113,7 @@ export class RaffleService {
                                    .getCount();
 
     if (existingPair) {
-      throw new HttpError("error.raffle.alreadyJoinedTo", FORBIDDEN);
+      throw new HttpError("error.raffle.alreadyJoinedTo", BAD_REQUEST);
     }
 
     const raffle = await this.rafflesRepository
@@ -221,7 +221,7 @@ export class RaffleService {
       isOwner,
       finished: details.raffle.finished,
       pairsCount: details.raffle.pairs.length,
-      raffleKey: isOwner ? details.raffle.joinKey : undefined,
+      raffleKey: details.raffle.joinKey,
       yourMatch: details.raffle.finished ? details.receiver!.name : undefined,
     };
   }
