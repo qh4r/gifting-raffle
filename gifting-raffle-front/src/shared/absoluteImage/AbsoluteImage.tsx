@@ -11,10 +11,11 @@ export const AbsoluteImage = styled(Image)`
   left: ${props => props.floatRight ? "90%" : "50%"};
   top: 0;
   transform: translateX(-50%) translateY(-95%) ${props => props.flip ? "scaleX(-1)" : ""};
+  height: ${props => props.small ? "100px" : "auto"} !important;
+  width: auto;
+  object-fit: scale-down;
   
   @media only screen and (max-width: 768px) {
     height: ${props => props.floatRight ? "40px" : "100px"} !important;
-    width: auto;
-    object-fit: scale-down;
   }
 `;

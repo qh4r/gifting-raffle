@@ -88,7 +88,7 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
                   {formatMessage({ id: "login.login" })}
                 </Button>
               </Segment>
-              <AbsoluteImage centered size="small" src={dabSanta} />
+              <AbsoluteImage small centered size="small" src={dabSanta} />
             </AbsoluteImageContainerForm>
             <Message>
               {formatMessage({ id: "login.new" })} <Link to='/sign-up'>{formatMessage({ id: "login.register" })}</Link>
