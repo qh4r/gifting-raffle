@@ -25,6 +25,7 @@ import { loggers } from "winston";
 
 dotenvConfig({
   example: ".env.dist",
+  allowEmptyValues: true,
 });
 
 const dbConfig = require("../config/db")(process.env);

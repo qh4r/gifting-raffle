@@ -7,6 +7,7 @@ import { createContainer } from "../src/container";
 
 dotenvConfig({
   example: ".env.dist",
+  allowEmptyValues: true,
 });
 
 const dbConfig = require("../config/db")(process.env);
