@@ -10,7 +10,7 @@ export const AppWrapper = styled("div")`
   width: 100%;
   height: 100vh;
   
-   $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
+  $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
   
   %on-top {
     z-index: 100;
