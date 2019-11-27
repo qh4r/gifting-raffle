@@ -52,9 +52,6 @@ config/all.override.yaml
 tmp
 /.npmrc
 
-# TypeScript v1 declaration files
-typings/
-
 # Optional npm cache directory
 .npm
 
