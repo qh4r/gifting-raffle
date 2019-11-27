@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.23",
     "@types/node": "12.12.8",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
@@ -51,20 +50,22 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^9.3.2",
     "@types/classnames": "^2.2.9",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/flat": "0.0.28",
+    "@types/jest": "^24.0.23",
     "@types/js-cookie": "^2.2.4",
     "@types/jwt-decode": "^2.2.1",
     "@types/react-intl": "^2.3.18",
     "@types/react-router-dom": "^5.1.2",
     "@types/styled-components": "^4.4.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "prettier": "^1.19.1",
-    "react-hooks-testing-library": "^0.6.0",
-    "react-test-renderer": "^16.12.0"
+    "prettier": "^1.19.1"
   }
 }
