@@ -1,18 +1,18 @@
-import React from "react";
-import { Button, Form as UiForm, Segment, Grid, Message } from "semantic-ui-react";
-import { LoginProps } from "./Login.types";
-import { Link, Redirect } from "react-router-dom";
+import React from 'react';
+import { Button, Form as UiForm, Segment, Grid, Message } from 'semantic-ui-react';
+import { Link, Redirect } from 'react-router-dom';
 import { Field, Form } from 'react-final-form';
 
-import { ErrorText } from "./Login.styles";
-import { useAuthDispatch, useAuthState, useLocale } from "../../shared/hooks";
-import { emailValidator, requireValidator } from "../../shared/validators";
-import { LoginBody } from "../../api/actions/auth/authActions";
-import { SET_TOKENS, START_AUTHORIZING } from "../../context/auth/authReducer/authReducer";
-import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
-import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
-import dabSanta from "assets/images/santa_dab.png";
+import { useAuthDispatch, useAuthState, useLocale } from '../../shared/hooks';
+import { emailValidator, requireValidator } from '../../shared/validators';
+import { LoginBody } from '../../api/actions/auth/authActions';
+import { SET_TOKENS, START_AUTHORIZING } from '../../context/auth/authReducer/authReducer';
+import { StyledGrid } from '../../shared/components/styledGrid/StyledGrid';
+import { AbsoluteImage, AbsoluteImageContainerForm } from '../../shared/components/absoluteImage/AbsoluteImage';
 
+import { ErrorText } from './Login.styles';
+import { LoginProps } from './Login.types';
+import dabSanta from 'assets/images/santa_dab.png';
 
 export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
   const { formatMessage } = useLocale();
@@ -43,18 +43,16 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
   };
 
   if (isAuthorized) {
-    return (
-      <Redirect to="/"/>
-    )
+    return <Redirect to="/" />;
   }
 
   return (
     <Form
       onSubmit={handleSubmit}
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
-        <StyledGrid textAlign='center' verticalAlign='middle'>
+        <StyledGrid textAlign="center" verticalAlign="middle">
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size="large">
               <Segment raised piled>
                 <Field name="email" validate={emailValidator}>
                   {({ input, meta }) => (
@@ -62,9 +60,9 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
                       fluid
                       error={meta.dirty && meta.error && formatMessage({ id: meta.error.id })}
                       input={input}
-                      icon='mail'
-                      iconPosition='left'
-                      placeholder={formatMessage({ id: "login.email" })}
+                      icon="mail"
+                      iconPosition="left"
+                      placeholder={formatMessage({ id: 'login.email' })}
                     />
                   )}
                 </Field>
@@ -74,28 +72,28 @@ export const Login: React.FC<LoginProps> = ({ onSubmit }) => {
                       fluid
                       error={meta.dirty && meta.error && formatMessage({ id: meta.error.id })}
                       input={input}
-                      icon='lock'
-                      iconPosition='left'
-                      placeholder={formatMessage({ id: "login.password" })}
-                      type='password'
+                      icon="lock"
+                      iconPosition="left"
+                      placeholder={formatMessage({ id: 'login.password' })}
+                      type="password"
                     />
                   )}
                 </Field>
                 {!submitting && submitErrors && submitErrors.id && !dirtySinceLastSubmit && (
                   <ErrorText>{formatMessage({ id: submitErrors.id })}</ErrorText>
                 )}
-                <Button type="submit" disabled={pristine || submitting} color={"twitter"} fluid size='large'>
-                  {formatMessage({ id: "login.login" })}
+                <Button type="submit" disabled={pristine || submitting} color="twitter" fluid size="large">
+                  {formatMessage({ id: 'login.login' })}
                 </Button>
               </Segment>
               <AbsoluteImage small centered size="small" src={dabSanta} />
             </AbsoluteImageContainerForm>
             <Message>
-              {formatMessage({ id: "login.new" })} <Link to='/sign-up'>{formatMessage({ id: "login.register" })}</Link>
+              {formatMessage({ id: 'login.new' })} <Link to="/sign-up">{formatMessage({ id: 'login.register' })}</Link>
             </Message>
           </Grid.Column>
         </StyledGrid>
       )}
     />
-  )
+  );
 };

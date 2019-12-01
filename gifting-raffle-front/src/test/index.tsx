@@ -40,6 +40,7 @@ const customRender = (node: ReactElement, options?: Options) => {
   );
 };
 
+export { renderHook } from '@testing-library/react-hooks';
 export * from 'enzyme';
 export { customRender as render };
 export { TestingRouter } from './testingRouter/TestingRouter';

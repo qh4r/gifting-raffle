@@ -1,17 +1,17 @@
-import React from "react";
-import { Button, Form as UiForm, Segment, Grid } from "semantic-ui-react";
-import { CreateProps } from "./Create.types";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Button, Form as UiForm, Segment, Grid } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import { Field, Form } from 'react-final-form';
 
-import { ErrorText } from "./Create.styles";
-import { useLocale } from "../../shared/hooks";
-import { requireValidator } from "../../shared/validators";
-import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
-import { CreateRaffleBody } from "../../api/actions/raffles/rafflesActions.types";
-import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
-import dabSanta from "../../assets/images/santa_dab.png";
+import { useLocale } from '../../shared/hooks';
+import { requireValidator } from '../../shared/validators';
+import { StyledGrid } from '../../shared/components/styledGrid/StyledGrid';
+import { CreateRaffleBody } from '../../api/actions/raffles/rafflesActions.types';
+import { AbsoluteImage, AbsoluteImageContainerForm } from '../../shared/components/absoluteImage/AbsoluteImage';
+import dabSanta from '../../assets/images/santa_dab.png';
 
+import { ErrorText } from './Create.styles';
+import { CreateProps } from './Create.types';
 
 export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
   const { formatMessage } = useLocale();
@@ -38,9 +38,9 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
     <Form
       onSubmit={handleSubmit}
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
-        <StyledGrid textAlign='center' verticalAlign='middle'>
+        <StyledGrid textAlign="center" verticalAlign="middle">
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size="large">
               <Segment raised piled>
                 <Field name="name" validate={requireValidator}>
                   {({ input, meta }) => (
@@ -48,17 +48,17 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
                       fluid
                       error={meta.dirty && meta.error && formatMessage({ id: meta.error.id })}
                       input={input}
-                      icon='tree'
-                      iconPosition='left'
-                      placeholder={formatMessage({ id: "create.name" })}
+                      icon="tree"
+                      iconPosition="left"
+                      placeholder={formatMessage({ id: 'create.name' })}
                     />
                   )}
                 </Field>
                 {!submitting && submitErrors && submitErrors.id && !dirtySinceLastSubmit && (
                   <ErrorText>{formatMessage({ id: submitErrors.id })}</ErrorText>
                 )}
-                <Button type="submit" disabled={pristine || submitting} color={"twitter"} fluid size='large'>
-                  {formatMessage({ id: "create.submit" })}
+                <Button type="submit" disabled={pristine || submitting} color="twitter" fluid size="large">
+                  {formatMessage({ id: 'create.submit' })}
                 </Button>
               </Segment>
               <AbsoluteImage centered size="small" src={dabSanta} />
@@ -67,5 +67,5 @@ export const Create: React.FC<CreateProps> = ({ onSubmit }) => {
         </StyledGrid>
       )}
     />
-  )
+  );
 };

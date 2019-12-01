@@ -1,11 +1,11 @@
 export const variables = {
   fonts: {
     primary: "'Bigelow Rules', cursive",
-    },
+  },
   colors: {
-    primary: "black",
-    snowBackground: "#7bc8ff",
-    headerBackground: "dodgerblue",
+    primary: 'black',
+    snowBackground: '#7bc8ff',
+    headerBackground: 'dodgerblue',
     danger: '#E73633',
     action: '#f2293c',
   },
@@ -18,5 +18,5 @@ export const variables = {
     textArea: {
       borderFocus: '1px solid #0078c8',
     },
-  }
+  },
 };

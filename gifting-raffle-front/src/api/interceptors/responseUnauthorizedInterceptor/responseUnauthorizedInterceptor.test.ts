@@ -21,14 +21,11 @@ describe('responseRefreshTokenInterceptor', () => {
       status: 400,
     };
 
-    const interceptedResponseWithSkipAuth = await responseUnauthorizedInterceptor( dispatch)(client)(
-      action,
-      response,
-    );
+    const interceptedResponseWithSkipAuth = await responseUnauthorizedInterceptor(dispatch)(client)(action, response);
 
     expect(interceptedResponseWithSkipAuth).toEqual(response);
 
-    const interceptedResponse = await responseUnauthorizedInterceptor( dispatch)(client)(
+    const interceptedResponse = await responseUnauthorizedInterceptor(dispatch)(client)(
       { ...action, skipAuth: false },
       response,
     );
@@ -51,9 +48,10 @@ describe('responseRefreshTokenInterceptor', () => {
       error: true,
     }));
 
-    const interceptedResponseWithFailedRefreshToken = await responseUnauthorizedInterceptor( dispatch)(
-      client,
-    )(action, response);
+    const interceptedResponseWithFailedRefreshToken = await responseUnauthorizedInterceptor(dispatch)(client)(
+      action,
+      response,
+    );
 
     expect(interceptedResponseWithFailedRefreshToken).toEqual(response);
 
@@ -61,5 +59,4 @@ describe('responseRefreshTokenInterceptor', () => {
       type: SET_UNAUTHORIZED,
     });
   });
-
 });

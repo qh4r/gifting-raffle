@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, act } from 'test';
+import { render } from 'test';
 import { LocaleContext } from 'context/locale';
 import { LocaleContextType } from 'context/locale/localeContext/LocaleContext.types';
 import { LocaleContextController } from './LocaleContextController';
@@ -49,15 +49,13 @@ describe('LocaleContextController component', () => {
       return <div />;
     });
 
-    render(
+    const wrapper = render(
       <LocaleContextController localeData={localesData} locale="en">
         <LocaleContext.Consumer>{onContext}</LocaleContext.Consumer>
       </LocaleContextController>,
     );
 
-    act(() => {
-      contextProps.updateLocale('pl');
-    });
+    contextProps!.updateLocale('pl');
 
     expect(onContext).toBeCalledTimes(2);
     expect(onContext).toHaveBeenNthCalledWith(1, expect.objectContaining({ locale: 'en' }));
