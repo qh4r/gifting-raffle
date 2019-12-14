@@ -31,7 +31,7 @@ const customRender = (node: ReactElement, options?: Options) => {
       <AuthStateContext.Provider value={options && options.authState ? options.authState : anonymousAuthState}>
         <ThemeContextController>
           <AuthDispatchContext.Provider value={jest.fn()}>
-            <TestingRouter initialRoute={options ? options.initialRoute : ''}>{node}</TestingRouter>
+            <TestingRouter initialRoute={options ? options.initialRoute : ''} >{node}</TestingRouter>
           </AuthDispatchContext.Provider>
         </ThemeContextController>
       </AuthStateContext.Provider>

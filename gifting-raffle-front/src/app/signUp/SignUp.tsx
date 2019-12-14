@@ -62,6 +62,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
 
   return (
     <Form
+      className="test"
       validate={handleValidate}
       onSubmit={handleSubmit}
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
@@ -78,6 +79,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
                       icon="mail"
                       iconPosition="left"
                       placeholder={formatMessage({ id: 'register.email' })}
+                      id="email"
                     />
                   )}
                 </Field>
@@ -90,6 +92,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSubmit }) => {
                       icon="user"
                       iconPosition="left"
                       placeholder={formatMessage({ id: 'register.name' })}
+                      id="name"
                     />
                   )}
                 </Field>
