@@ -1,5 +1,8 @@
-import { QueryResponse } from 'react-fetching-library';
+import { QueryResponse } from "react-fetching-library";
 
 export type LoginProps = {
-  onSubmit: (props: { email: string; password: string }) => Promise<QueryResponse>;
-};
+  onSubmit: (props: {
+    email: string;
+    password: string;
+  }) => Promise<QueryResponse>;
+}

@@ -36,6 +36,7 @@ export const authReducer: (state: AuthStateContextType, action: Action) => AuthS
       return {
         ...state,
         accessToken: '',
+        refreshToken: '',
       };
     case SET_TOKENS:
       if (!action.accessToken) {

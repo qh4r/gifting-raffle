@@ -7,7 +7,10 @@ import { SET_UNAUTHORIZED } from 'context/auth/authReducer/authReducer';
 
 export const responseUnauthorizedInterceptor: (
   dispatch: Dispatch<Action>,
-) => ResponseInterceptor = dispatch => client => async (action: ApiAction, response: QueryResponse<object>) => {
+) => ResponseInterceptor = (dispatch) => client => async (
+  action: ApiAction,
+  response: QueryResponse<object>,
+) => {
   if (action.skipAuth) {
     return response;
   }

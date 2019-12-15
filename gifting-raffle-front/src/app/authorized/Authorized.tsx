@@ -1,10 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
-import { DashboardContainer } from '../dashboard/DashboardContainer';
-import { DetailsContainer } from '../details/DetailsContainer';
-import { CreateContainer } from '../create/CreateContainer';
-import { JoinContainer } from '../join/JoinContainer';
+import { DashboardContainer } from "../dashboard/DashboardContainer";
+import { DetailsContainer } from "../details/DetailsContainer";
+import { CreateContainer } from "../create/CreateContainer";
+import { JoinContainer } from "../join/JoinContainer";
 
 export const Authorized: React.FC = () => {
   return (
@@ -16,5 +15,5 @@ export const Authorized: React.FC = () => {
 
       <Redirect to="/not-found" />
     </Switch>
-  );
+  )
 };

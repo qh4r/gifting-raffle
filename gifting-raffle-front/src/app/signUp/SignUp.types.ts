@@ -1,4 +1,4 @@
-import { QueryResponse } from 'react-fetching-library';
+import { QueryResponse } from "react-fetching-library";
 
 export type SignUpProps = {
   onSubmit: (props: {
@@ -7,4 +7,4 @@ export type SignUpProps = {
     password: string;
     repeatPassword: string;
   }) => Promise<QueryResponse>;
-};
+}
