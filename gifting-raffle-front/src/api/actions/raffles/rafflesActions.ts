@@ -1,5 +1,5 @@
 import { Action } from 'api/types';
-import { CreateRaffleBody, JoinRaffleBody } from './rafflesActions.types';
+import { CreateRaffleBody, JoinRaffleBody } from "./rafflesActions.types";
 
 export const getRafflesLoginAction: () => Action = () => ({
   skipAuth: false,
@@ -7,11 +7,13 @@ export const getRafflesLoginAction: () => Action = () => ({
   method: 'GET',
 });
 
+
 export const getRaffleDetailsAction: (raffleId: string) => Action = (raffleId: string) => ({
   skipAuth: false,
   endpoint: `/raffles/${raffleId}/details`,
   method: 'GET',
 });
+
 
 export const closeRaffleAction: (raffleId: string) => Action = (raffleId: string) => ({
   skipAuth: false,
@@ -32,3 +34,4 @@ export const createRaffleAction: (body: CreateRaffleBody) => Action = body => ({
   method: 'POST',
   body,
 });
+

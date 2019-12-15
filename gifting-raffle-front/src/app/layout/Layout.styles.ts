@@ -1,17 +1,16 @@
-import snow1 from '../../assets/images/snow1.png';
-import snow2 from '../../assets/images/snow2.png';
-import snow3 from '../../assets/images/snow3.png';
-
 import styled from 'theme';
+import snow1 from "../../assets/images/snow1.png";
+import snow2 from "../../assets/images/snow2.png";
+import snow3 from "../../assets/images/snow3.png";
 
-export const AppWrapper = styled('div')`
+export const AppWrapper = styled("div")`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
   
-  $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
+   $ease--out-quad: cubic-bezier(.25,.46,.450,.94);
   
   %on-top {
     z-index: 100;
@@ -80,7 +79,7 @@ export const AppWrapper = styled('div')`
   }
 `;
 
-export const ContentWrapper = styled('div')`
+export const ContentWrapper = styled("div")`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -92,7 +91,8 @@ export const ContentWrapper = styled('div')`
   overflow: auto;
 `;
 
-export const ChrimstansText = styled('p')`
+
+export const ChrimstansText = styled("p")`
   font-size: 4rem;
   color: ${props => props.theme.variables.colors.action};
   position: absolute;
@@ -103,59 +103,59 @@ export const ChrimstansText = styled('p')`
   text-align: center;
   z-index: -1;
   animation: text-flicker 10s linear infinite;
-
+  
   @keyframes text-flicker {
-    0% {
-      opacity: 0.1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-
-    2% {
-      opacity: 1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    8% {
-      opacity: 0.1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    9% {
-      opacity: 1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    12% {
-      opacity: 0.1;
-      text-shadow: 0px 0px ${props => props.theme.variables.colors.action};
-    }
-    20% {
-      opacity: 1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    25% {
-      opacity: 0.3;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    30% {
-      opacity: 1;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-
-    70% {
-      opacity: 0.7;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-
-    72% {
-      opacity: 0.2;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-
-    77% {
-      opacity: 0.9;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
-    100% {
-      opacity: 0.9;
-      text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
-    }
+  0% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
   }
+  
+  2% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  8% {
+    opacity:0.1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  9% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action};
+  }
+  12% {
+    opacity:0.1;
+    text-shadow: 0px 0px ${props => props.theme.variables.colors.action};
+  }
+  20% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  25% {
+    opacity:0.3;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  30% {
+    opacity:1;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  70% {
+    opacity:0.7;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  72% {
+    opacity:0.2;
+    text-shadow:0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  
+  77% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+  100% {
+    opacity:.9;
+    text-shadow: 0px 0px 29px ${props => props.theme.variables.colors.action}
+  }
+}
 `;

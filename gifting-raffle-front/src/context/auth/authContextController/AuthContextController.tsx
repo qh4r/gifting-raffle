@@ -4,12 +4,12 @@ import decode from 'jwt-decode';
 
 import { AuthDispatchContext, AuthStateContext } from '../authContext/AuthContext';
 import { authReducer, SET_AUTHORIZED, SET_UNAUTHORIZED } from '../authReducer/authReducer';
-import { Token } from '../authReducer/authReducer.types';
 
 import { AuthContextControllerProps } from './AuthContextController.types';
+import { Token } from "../authReducer/authReducer.types";
 
 export const AuthContextController: React.FC<AuthContextControllerProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, {
+  const [ state, dispatch ] = useReducer(authReducer, {
     isAuthorized: false,
     isAuthorizing: true,
     name: undefined,
@@ -21,7 +21,6 @@ export const AuthContextController: React.FC<AuthContextControllerProps> = ({ ch
       cookies.set('accessToken', state.accessToken);
 
       const decodedToken = decode<Token>(state.accessToken);
-
       return dispatch({
         type: SET_AUTHORIZED,
         decodedToken,
@@ -33,7 +32,7 @@ export const AuthContextController: React.FC<AuthContextControllerProps> = ({ ch
         type: SET_UNAUTHORIZED,
       });
     }
-  }, [state.accessToken]);
+  }, [ state.accessToken, ]);
 
   return (
     <AuthStateContext.Provider value={state}>

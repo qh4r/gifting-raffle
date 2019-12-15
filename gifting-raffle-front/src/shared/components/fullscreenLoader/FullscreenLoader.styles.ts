@@ -12,4 +12,4 @@ export const Wrapper = styled.div`
 export const LoadingText = styled('p')`
   font-size: 30px !important;
   color: ${props => props.theme.variables.colors.primary};
-`;
+`

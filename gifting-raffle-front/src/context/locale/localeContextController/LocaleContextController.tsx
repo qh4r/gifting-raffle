@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { IntlProvider, injectIntl, addLocaleData } from 'react-intl';
 import pl from 'react-intl/locale-data/pl';
 
-import { LocaleContextControllerProps } from './LocaleContextController.types';
-
 import { LocaleContextProvider } from '..';
+
+import { LocaleContextControllerProps } from './LocaleContextController.types';
 
 addLocaleData([...pl]);
 
