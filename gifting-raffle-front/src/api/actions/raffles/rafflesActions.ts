@@ -1,7 +1,7 @@
 import { Action } from 'api/types';
 import { CreateRaffleBody, JoinRaffleBody } from './rafflesActions.types';
 
-export const getRafflesLoginAction: () => Action = () => ({
+export const getRafflesListAction: () => Action = () => ({
   skipAuth: false,
   endpoint: '/raffles/list',
   method: 'GET',

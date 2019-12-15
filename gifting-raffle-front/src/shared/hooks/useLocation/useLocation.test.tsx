@@ -41,7 +41,7 @@ describe('useLocation test', () => {
   );
 
   it('returns locationContext', async () => {
-    const { result } = renderHook(() => useLocation(), {
+    const { result } = renderHook(useLocation, {
       wrapper,
     });
 
@@ -54,7 +54,7 @@ describe('useLocation test', () => {
   });
 
   it('throws error when useLocation is not used within LocationContextProvider', async () => {
-    const { result } = renderHook(() => useLocation());
+    const { result } = renderHook(useLocation);
 
     expect(result.error).toEqual(Error('useLocation must be used within a Router'));
   });

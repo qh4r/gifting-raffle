@@ -25,18 +25,23 @@ const localeContext = {
 };
 
 const customRender = (node: ReactElement, options?: Omit<Options, 'queries'>) => {
-  return render(
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <LocaleContextProvider {...localeContext}>
+  const Wrapper = ({children}: any) => <LocaleContextProvider {...localeContext}>
       <AuthStateContext.Provider value={options && options.authState ? options.authState : anonymousAuthState}>
         <ThemeContextController>
           <AuthDispatchContext.Provider value={jest.fn()}>
-            <TestingRouter initialRoute={options ? options.initialRoute : ''}>{node}</TestingRouter>
+            <TestingRouter initialRoute={options ? options.initialRoute : ''}>{children}</TestingRouter>
           </AuthDispatchContext.Provider>
         </ThemeContextController>
       </AuthStateContext.Provider>
-    </LocaleContextProvider>,
-    options,
+    </LocaleContextProvider>;
+
+  return render(
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    node,
+    {
+      ...options,
+      wrapper: Wrapper
+    }
   );
 };
 

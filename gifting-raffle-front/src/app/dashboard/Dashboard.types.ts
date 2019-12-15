@@ -4,4 +4,5 @@ export type DashboardPropsType = {
   rafflesList?: RafflesListItem[];
   loading: boolean;
   openDetails: (id: string) => void;
+  modernSearch?: boolean;
 };

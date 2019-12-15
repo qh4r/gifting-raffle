@@ -17,16 +17,16 @@ type State = {
   value: string;
 };
 
-export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading, openDetails }) => {
+export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading, openDetails, modernSearch }) => {
   const { formatMessage } = useLocale();
-  const [state, setState] = useState<State>({
+  const [ state, setState ] = useState<State>({
     isLoading: false,
     results: [],
     value: '',
   });
 
   if (loading) {
-    return <FullscreenLoader />;
+    return <FullscreenLoader/>;
   }
 
   const options = (rafflesList || []).map(el => ({
@@ -82,19 +82,20 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading, 
           <Segment padded raised piled>
             <ListTitle>TODO</ListTitle>
             <Grid textAlign="center">
-              <Grid.Column mobile={12} tablet={12} computer={6}>
-                <Select placeholder="Select..." options={options} onChange={handleSelect} />
-              </Grid.Column>
-              <Grid.Column mobile={12} tablet={12} computer={6}>
-                <Search
-                  loading={state.isLoading}
-                  onResultSelect={handleResultSelect}
-                  onSearchChange={handleSearchChange}
-                  results={state.results}
-                  value={state.value}
-                  size="massive"
-                />
-              </Grid.Column>
+              {!modernSearch ? (<Grid.Column mobile={12} tablet={12} computer={6}>
+                  <Select labeled placeholder="Select..." options={options} onChange={handleSelect}/>
+                </Grid.Column>) :
+                (<Grid.Column mobile={12} tablet={12} computer={6}>
+                  <Search
+                    role={"search"}
+                    loading={state.isLoading}
+                    onResultSelect={handleResultSelect}
+                    onSearchChange={handleSearchChange}
+                    results={state.results}
+                    value={state.value}
+                    size="massive"
+                  />
+                </Grid.Column>)}
             </Grid>
           </Segment>
           <Segment padded raised piled>
@@ -103,11 +104,11 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading, 
               {rafflesList && rafflesList.length ? (
                 rafflesList.map(item => (
                   <List.Item key={item.id} as={Link} to={`/raffle/${item.id}`}>
-                    {item.finished ? <Image size="mini" src={openGift} /> : <Image size="mini" src={gift} />}
+                    {item.finished ? <Image size="mini" src={openGift}/> : <Image size="mini" src={gift}/>}
                     <List.Content>
-                      <StyledListHeader>{item.name}</StyledListHeader>
+                      <StyledListHeader>{item.name.toUpperCase()}</StyledListHeader>
                     </List.Content>
-                    {item.isOwner ? <Image centered size="mini" src={crown} /> : null}
+                    {item.isOwner ? <Image centered size="mini" src={crown}/> : null}
                   </List.Item>
                 ))
               ) : (

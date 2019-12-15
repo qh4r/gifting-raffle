@@ -4,14 +4,13 @@ import { render, fireEvent, wait } from 'test';
 import { SignUp } from './SignUp';
 
 describe('SignUp component', () => {
-  it('should be validated', () => {
+  it('should display error if passed invalid email', () => {
     const handleSubmit = jest.fn();
     const { getByText, getByPlaceholderText } = render(<SignUp onSubmit={handleSubmit} />);
 
     const emailField = getByPlaceholderText('register.email');
 
-    // Error fires when email format is invalid
-    fireEvent.change(emailField, { target: { value: 'email' } });
+    fireEvent.change(emailField, { target: { value: 'wrongmail@pl' } });
     expect(getByText('validation.email'));
 
     const passwordField = getByPlaceholderText('register.password');

@@ -9,6 +9,7 @@ import { DetailsContainer, Title, Paragraph, Attention, Code } from './Details.s
 import gift from 'assets/images/red_gift.svg';
 import openGift from 'assets/images/gift_open.svg';
 import { DetailsProps } from './Details.types';
+import { Counter } from "./Counter/Counter";
 
 export const Details: React.FC<DetailsProps> = ({ raffle, error, loading, close }) => {
   const { formatMessage } = useLocale();
@@ -49,6 +50,7 @@ export const Details: React.FC<DetailsProps> = ({ raffle, error, loading, close 
               <Image centered inline size="small" src={gift} />
             )}
             <Title>{raffle.name}</Title>
+            <Counter />
             <Paragraph>
               {formatMessage({ id: 'details.participants' })}
               <Attention>{raffle.pairsCount}</Attention>
