@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Segment, Button, List, Image } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Grid, Segment, Button, List, Image, Search, Select, DropdownProps } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import { useLocale } from '../../shared/hooks';
@@ -11,12 +11,59 @@ import gift from 'assets/images/red_gift.svg';
 import openGift from 'assets/images/gift_open.svg';
 import crown from 'assets/images/crown.svg';
 
-export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading }) => {
+type State = {
+  isLoading: boolean;
+  results: any[];
+  value: string;
+};
+
+export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading, openDetails }) => {
   const { formatMessage } = useLocale();
+  const [state, setState] = useState<State>({
+    isLoading: false,
+    results: [],
+    value: '',
+  });
 
   if (loading) {
     return <FullscreenLoader />;
   }
+
+  const options = (rafflesList || []).map(el => ({
+    value: el.id,
+    text: el.name,
+  }));
+
+  const handleSelect = (_: any, { value }: DropdownProps) => {
+    if (typeof value === 'string') {
+      openDetails(value);
+    }
+  };
+
+  const handleResultSelect = (e: any, { result }: any) => {
+    openDetails(result.value);
+  };
+
+  const handleSearchChange = (e: any, { value }: any) => {
+    setState(prevState => ({
+      ...prevState,
+      isLoading: true,
+      value,
+    }));
+
+    setTimeout(() => {
+      setState(prevState => ({
+        ...prevState,
+        results: (rafflesList || [])
+          .filter(raffle => raffle.name.includes(value))
+          .map(raffle => ({
+            title: raffle.name,
+            value: raffle.id,
+          })),
+        isLoading: false,
+      }));
+    }, 500);
+  };
 
   return (
     <DashboardContainer className="dashboard-container">
@@ -32,6 +79,24 @@ export const Dashboard: React.FC<DashboardPropsType> = ({ rafflesList, loading }
           </Button>
         </Grid.Column>
         <StyledColumn textAlign="left" verticalAlign="middle" mobile={16} tablet={12} computer={10}>
+          <Segment padded raised piled>
+            <ListTitle>TODO</ListTitle>
+            <Grid textAlign="center">
+              <Grid.Column mobile={12} tablet={12} computer={6}>
+                <Select placeholder="Select..." options={options} onChange={handleSelect} />
+              </Grid.Column>
+              <Grid.Column mobile={12} tablet={12} computer={6}>
+                <Search
+                  loading={state.isLoading}
+                  onResultSelect={handleResultSelect}
+                  onSearchChange={handleSearchChange}
+                  results={state.results}
+                  value={state.value}
+                  size="massive"
+                />
+              </Grid.Column>
+            </Grid>
+          </Segment>
           <Segment padded raised piled>
             <ListTitle>{formatMessage({ id: 'list.header' })}</ListTitle>
             <List animated size="massive" verticalAlign="middle">
