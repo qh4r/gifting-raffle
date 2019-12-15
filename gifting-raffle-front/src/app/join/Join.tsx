@@ -1,17 +1,17 @@
-import React from "react";
-import { Button, Form as UiForm, Segment, Grid } from "semantic-ui-react";
-import { JoinProps } from "./Join.types";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { Button, Form as UiForm, Segment, Grid } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import { Field, Form } from 'react-final-form';
 
-import { ErrorText } from "./Join.styles";
-import { useLocale } from "../../shared/hooks";
-import { requireValidator } from "../../shared/validators";
-import { StyledGrid } from "../../shared/components/styledGrid/StyledGrid";
-import { JoinRaffleBody } from "../../api/actions/raffles/rafflesActions.types";
-import { AbsoluteImage, AbsoluteImageContainerForm } from "../../shared/absoluteImage/AbsoluteImage";
-import dabSanta from "../../assets/images/santa_dab.png";
+import { useLocale } from '../../shared/hooks';
+import { requireValidator } from '../../shared/validators';
+import { StyledGrid } from '../../shared/components/styledGrid/StyledGrid';
+import { JoinRaffleBody } from '../../api/actions/raffles/rafflesActions.types';
+import { AbsoluteImage, AbsoluteImageContainerForm } from '../../shared/components/absoluteImage/AbsoluteImage';
+import dabSanta from '../../assets/images/santa_dab.png';
 
+import { ErrorText } from './Join.styles';
+import { JoinProps } from './Join.types';
 
 export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
   const { formatMessage } = useLocale();
@@ -38,9 +38,9 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
     <Form
       onSubmit={handleSubmit}
       render={({ handleSubmit, submitting, pristine, submitErrors, dirtySinceLastSubmit }) => (
-        <StyledGrid textAlign='center' verticalAlign='middle'>
+        <StyledGrid textAlign="center" verticalAlign="middle">
           <Grid.Column mobile={14} tablet={8} largeScreen={6} computer={6}>
-            <AbsoluteImageContainerForm onSubmit={handleSubmit} size='large'>
+            <AbsoluteImageContainerForm onSubmit={handleSubmit} size="large">
               <Segment raised piled>
                 <Field name="raffleKey" validate={requireValidator}>
                   {({ input, meta }) => (
@@ -48,17 +48,17 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
                       fluid
                       error={meta.dirty && meta.error && formatMessage({ id: meta.error.id })}
                       input={input}
-                      icon='key'
-                      iconPosition='left'
-                      placeholder={formatMessage({ id: "join.key" })}
+                      icon="key"
+                      iconPosition="left"
+                      placeholder={formatMessage({ id: 'join.key' })}
                     />
                   )}
                 </Field>
                 {!submitting && submitErrors && submitErrors.id && !dirtySinceLastSubmit && (
                   <ErrorText>{formatMessage({ id: submitErrors.id })}</ErrorText>
                 )}
-                <Button type="submit" disabled={pristine || submitting} color={"twitter"} fluid size='large'>
-                  {formatMessage({ id: "join.submit" })}
+                <Button type="submit" disabled={pristine || submitting} color="twitter" fluid size="large">
+                  {formatMessage({ id: 'join.submit' })}
                 </Button>
               </Segment>
               <AbsoluteImage centered flip size="small" src={dabSanta} />
@@ -67,5 +67,5 @@ export const Join: React.FC<JoinProps> = ({ onSubmit }) => {
         </StyledGrid>
       )}
     />
-  )
+  );
 };
